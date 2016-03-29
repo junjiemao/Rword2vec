@@ -46,7 +46,7 @@ word2vec <- function(train_file = '',
                              gsub(pattern = '\\.[A-Za-z]*$',
                                   replacement = ifelse(binary,'.bin','.txt'),
                                   x = basename(train_file)))
-    if(normalizePath(output_file) == train_file)
+    if(normalizePath(output_file,mustWork = FALSE) == train_file)
       output_file <- paste0(output_file,ifelse(binary,'.bin','.txt'))
     
   }
