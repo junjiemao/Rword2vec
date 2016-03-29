@@ -1,5 +1,6 @@
 #' @author  HatMatrix42
 #' @name word2vex
+#' @title word2vex R API
 #' @description word2vec
 #' @param train_file
 #' @param output_file

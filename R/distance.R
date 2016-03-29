@@ -1,6 +1,7 @@
 #' @author HatMatrix42
+#' @title distance R API
 #' @name distance
-#' @description  
+#' @description  TODO 
 #' @param fileName
 #' @param word
 #' @param n 
