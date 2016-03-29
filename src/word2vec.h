@@ -13,16 +13,22 @@
 //  limitations under the License.
 
 #include <stdio.h>
-#include <stdlib.h>
+#include <cstdlib>
 #include <string.h>
 #include <math.h>
 #include <pthread.h>
+#include <ctime>
+#include <malloc.h>
+
 
 #define MAX_STRING 100
 #define EXP_TABLE_SIZE 1000
 #define MAX_EXP 6
 #define MAX_SENTENCE_LENGTH 1000
 #define MAX_CODE_LENGTH 40
+
+
+#define posix_memalign(p, a, s) (((*(p)) = _aligned_malloc((s), (a))), *(p) ?0 :errno)  //fix bug
 
 const int vocab_hash_size = 30000000;  // Maximum 30 * 0.7 = 21M words in the vocabulary
 
@@ -41,8 +47,8 @@ int binary = 0, cbow = 1, debug_mode = 2, window = 5, min_count = 5, num_threads
 int *vocab_hash;
 long long vocab_max_size = 1000, vocab_size = 0, layer1_size = 100;
 long long train_words = 0, word_count_actual = 0, iter = 5, file_size = 0, classes = 0;
-real alpha = 0.025, starting_alpha, sample = 1e-3;
-real *syn0, *syn1, *syn1neg, *expTable;
+float alpha = 0.025, starting_alpha, sample = 1e-3;
+float *syn0, *syn1, *syn1neg, *expTable;
 clock_t start;
 
 int hs = 0, negative = 5;
@@ -276,7 +282,7 @@ void LearnVocabFromTrainFile() {
     if (feof(fin)) break;
     train_words++;
     if ((debug_mode > 1) && (train_words % 100000 == 0)) {
-      printf("%lldK%c", train_words / 1000, 13);
+      printf("%ldK%c", train_words / 1000, 13);
       fflush(stdout);
     }
     i = SearchVocab(word);
@@ -288,8 +294,8 @@ void LearnVocabFromTrainFile() {
   }
   SortVocab();
   if (debug_mode > 0) {
-    printf("Vocab size: %lld\n", vocab_size);
-    printf("Words in train file: %lld\n", train_words);
+    printf("Vocab size: %ld\n", vocab_size);
+    printf("Words in train file: %ld\n", train_words);
   }
   file_size = ftell(fin);
   fclose(fin);
@@ -298,7 +304,7 @@ void LearnVocabFromTrainFile() {
 void SaveVocab() {
   long long i;
   FILE *fo = fopen(save_vocab_file, "wb");
-  for (i = 0; i < vocab_size; i++) fprintf(fo, "%s %lld\n", vocab[i].word, vocab[i].cn);
+  for (i = 0; i < vocab_size; i++) fprintf(fo, "%s %ld\n", vocab[i].word, vocab[i].cn);
   fclose(fo);
 }
 
@@ -317,13 +323,13 @@ void ReadVocab() {
     ReadWord(word, fin);
     if (feof(fin)) break;
     a = AddWordToVocab(word);
-    fscanf(fin, "%lld%c", &vocab[a].cn, &c);
+    fscanf(fin, "%ld%c", &vocab[a].cn, &c);
     i++;
   }
   SortVocab();
   if (debug_mode > 0) {
-    printf("Vocab size: %lld\n", vocab_size);
-    printf("Words in train file: %lld\n", train_words);
+    printf("Vocab size: %ld\n", vocab_size);
+    printf("Words in train file: %ld\n", train_words);
   }
   fin = fopen(train_file, "rb");
   if (fin == NULL) {
@@ -558,7 +564,7 @@ void TrainModel() {
   fo = fopen(output_file, "wb");
   if (classes == 0) {
     // Save the word vectors
-    fprintf(fo, "%lld %lld\n", vocab_size, layer1_size);
+    fprintf(fo, "%ld %ld\n", vocab_size, layer1_size);
     for (a = 0; a < vocab_size; a++) {
       fprintf(fo, "%s ", vocab[a].word);
       if (binary) for (b = 0; b < layer1_size; b++) fwrite(&syn0[a * layer1_size + b], sizeof(real), 1, fo);

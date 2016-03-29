@@ -1,5 +1,4 @@
 #include <Rcpp.h>
-#include <stdlib>
 #include "word2vec.h"
 using namespace Rcpp;
 
@@ -27,6 +26,11 @@ int Rword2vec( std::string Rtrain_file,
   strcpy(output_file,Routput_file.c_str());
   strcpy(save_vocab_file,Rsave_vocab_file.c_str());
   strcpy(read_vocab_file,Rread_vocab_file.c_str());
+  
+  // TO-DO
+  save_vocab_file[0] = 0;
+  read_vocab_file[0] = 0;
+  
   layer1_size = Rlayer1_size;
   binary = Rbinary;
   cbow = Rcbow;
