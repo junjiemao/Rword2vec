@@ -21,6 +21,12 @@ int Rword2vec( std::string Rtrain_file,
                int Rmin_count,
                int Rclasses){
   int i;
+  train_words = 0;
+  word_count_actual = 0;
+  iter = 5;
+  file_size = 0;
+  classes = 0;
+  
   
   strcpy(train_file,Rtrain_file.c_str());
   strcpy(output_file,Routput_file.c_str());
