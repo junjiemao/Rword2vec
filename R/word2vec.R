@@ -22,7 +22,7 @@
 #' @param min_count This will discard words that appear less than min_count times;
 #' @param classes Output word classes rather than word vectors; 
 #'        default number of classes is 0 (vectors are written)
-word2vex <- function(train_file = '',
+word2vec <- function(train_file = '',
                      output_file = '',
                      save_vocab_file = '',
                      read_vocab_file = '',
