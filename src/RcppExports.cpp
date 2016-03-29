@@ -19,7 +19,7 @@ BEGIN_RCPP
 END_RCPP
 }
 // Rword2vec
-int Rword2vec(std::string Rtrain_file, std::string Routput_file, std::string Rsave_vocab_file, std::string Rread_vocab_file, int Rlayer1_size, int Rbinary, int Rcbow, int Ralpha, int Rwindow, int Rhs, int Rsample, int Rnegative, int Rnum_threads, int Riter, int Rmin_count, int Rclasses);
+int Rword2vec(std::string Rtrain_file, std::string Routput_file, std::string Rsave_vocab_file, std::string Rread_vocab_file, int Rlayer1_size, int Rbinary, int Rcbow, float Ralpha, int Rwindow, int Rhs, float Rsample, int Rnegative, int Rnum_threads, int Riter, int Rmin_count, int Rclasses);
 RcppExport SEXP Rword2vec_Rword2vec(SEXP Rtrain_fileSEXP, SEXP Routput_fileSEXP, SEXP Rsave_vocab_fileSEXP, SEXP Rread_vocab_fileSEXP, SEXP Rlayer1_sizeSEXP, SEXP RbinarySEXP, SEXP RcbowSEXP, SEXP RalphaSEXP, SEXP RwindowSEXP, SEXP RhsSEXP, SEXP RsampleSEXP, SEXP RnegativeSEXP, SEXP Rnum_threadsSEXP, SEXP RiterSEXP, SEXP Rmin_countSEXP, SEXP RclassesSEXP) {
 BEGIN_RCPP
     Rcpp::RObject __result;
@@ -31,10 +31,10 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< int >::type Rlayer1_size(Rlayer1_sizeSEXP);
     Rcpp::traits::input_parameter< int >::type Rbinary(RbinarySEXP);
     Rcpp::traits::input_parameter< int >::type Rcbow(RcbowSEXP);
-    Rcpp::traits::input_parameter< int >::type Ralpha(RalphaSEXP);
+    Rcpp::traits::input_parameter< float >::type Ralpha(RalphaSEXP);
     Rcpp::traits::input_parameter< int >::type Rwindow(RwindowSEXP);
     Rcpp::traits::input_parameter< int >::type Rhs(RhsSEXP);
-    Rcpp::traits::input_parameter< int >::type Rsample(RsampleSEXP);
+    Rcpp::traits::input_parameter< float >::type Rsample(RsampleSEXP);
     Rcpp::traits::input_parameter< int >::type Rnegative(RnegativeSEXP);
     Rcpp::traits::input_parameter< int >::type Rnum_threads(Rnum_threadsSEXP);
     Rcpp::traits::input_parameter< int >::type Riter(RiterSEXP);
