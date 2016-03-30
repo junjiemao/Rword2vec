@@ -40,7 +40,7 @@ word2vec <- function(train_file = '',
                      classes = 0){
   if(!file.exists(train_file))
     stop('train file not exists')
-  if(!file.exists(read_vocab_file))
+  if(!file.exists(read_vocab_file) && read_vocab_file != '')
     stop('vocab file not exists')
   train_file <- normalizePath(train_file)
   if(output_file == ''){
