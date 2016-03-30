@@ -18,7 +18,7 @@
 #include <math.h>
 #include <pthread.h>
 #include <ctime>
-#include <malloc.h>
+#include <stdlib.h>
 
 
 #define MAX_STRING 100
@@ -334,7 +334,7 @@ void ReadVocab() {
   }
   SortVocab();
   if (debug_mode > 0) {
-    printf("Vocab size: %ld\n", vocab_size);
+    printf("Vocab size: %lld\n", vocab_size);
     printf("Words in train file: %ld\n", train_words);
   }
   fin = fopen(train_file, "rb");

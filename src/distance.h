@@ -15,10 +15,11 @@
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
-#include <malloc.h>
 #include <Rcpp.h>
 #include <sstream>
 #include <stdlib.h>
+
+
 using namespace Rcpp;
 
 const long long max_size = 2000;         // max length of strings
