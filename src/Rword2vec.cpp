@@ -27,16 +27,19 @@ int Rword2vec( std::string Rtrain_file,
   file_size = 0;
   classes = 0;
   
+  if(Rsave_vocab_file.length() == 0)
+    save_vocab_file[0] = 0;
+  else
+    strcpy(save_vocab_file,Rsave_vocab_file.c_str());
+    
+  if(Rread_vocab_file.length() == 0)
+    read_vocab_file[0] = 0;
+  else
+    strcpy(read_vocab_file,Rread_vocab_file.c_str());
   
   strcpy(train_file,Rtrain_file.c_str());
   strcpy(output_file,Routput_file.c_str());
-  strcpy(save_vocab_file,Rsave_vocab_file.c_str());
-  strcpy(read_vocab_file,Rread_vocab_file.c_str());
-  
-  // TO-DO
-  save_vocab_file[0] = 0;
-  read_vocab_file[0] = 0;
-  
+
   layer1_size = Rlayer1_size;
   binary = Rbinary;
   cbow = Rcbow;
