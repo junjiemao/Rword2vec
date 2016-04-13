@@ -12,7 +12,7 @@
 #' @param alpha Set the starting learning rate; default is 0.025 for 
 #'        skip-gram and 0.05 for CBOW
 #' @param window Set max skip length between words,default is 5
-#' @param hs tUse Hierarchical Softmax,default is 0(not used)
+#' @param hs Use Hierarchical Softmax,default is 0(not used)
 #' @param sample Set threshold for occurrence of words. 
 #'        Those that appear with higher frequency in the training data.
 #' @param negative Number of negative examples; default is 5, 
@@ -71,7 +71,6 @@ word2vec <- function(train_file = '',
                    Rclasses = classes)
   if(OUT)
     stop('Task Fail!')
-  class(OUT) <- 'word2vec'
 }
 
 
