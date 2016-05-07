@@ -10,6 +10,14 @@ install:
   ps: Bootstrap
 
 # Adapt as necessary starting from here
+environment:
+  global:
+    WARNINGS_ARE_ERRORS: 1
+
+  matrix:
+  - R_VERSION: 3.2.5
+    RTOOLS_VERSION: 31
+    CRAN: http://cran.rstudio.com
 
 build_script:
   - travis-tool.sh install_deps
