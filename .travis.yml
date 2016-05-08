@@ -17,6 +17,7 @@ before_install:
   - ./travis-tool.sh bootstrap
   - ./travis-tool.sh install_github jimhester/robustr
   - ./travis-tool.sh install_github jimhester/covr
+  - ./travis-tool.sh install_github RcppCore/Rcpp
 
 install:
   - ./travis-tool.sh install_deps
